@@ -1,12 +1,6 @@
 ﻿using TaskTracker;
 using TaskTracker.Models;
 
-/*Console.WriteLine("Welcome to Task Tracker!");
-
-Console.WriteLine("Please input your command: ");
-TaskService.ShowCommands();
-*/
-
 switch (args[0])
 {
     case "add":
