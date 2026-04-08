@@ -1,4 +1,5 @@
-# TaskTracker
+Project repository: `https://github.com/SabaSulakvelidze/TaskTracker`
+
 ## Usage
 
 Run the project from the command line with `dotnet run --` followed by a command and its arguments.
