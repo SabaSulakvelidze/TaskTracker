@@ -1,47 +1,50 @@
 ﻿using TaskTracker;
 using TaskTracker.Models;
 
-Console.WriteLine("Welcome to Task Tracker!");
+/*Console.WriteLine("Welcome to Task Tracker!");
 
 Console.WriteLine("Please input your command: ");
 TaskService.ShowCommands();
+*/
 
-var command = args[0];
-
-switch (command)
+switch (args[0])
 {
     case "add":
         TaskService.AddTask(args[1]);
         break;
     case "update":
-
+        TaskService.UpdateTask(int.Parse(args[1]), args[2]);
         break;
     case "delete":
-
+        TaskService.DeleteTask(int.Parse(args[1]));
         break;
     case "mark-in-progress":
-
+        TaskService.UpdateTask(int.Parse(args[1]), Status.in_progress);
         break;
     case "mark-done":
-
+        TaskService.UpdateTask(int.Parse(args[1]), Status.done);
         break;
     case "list":
-        switch (args[1])
+        if (args.Length == 1)
         {
-            case nameof(Status.todo):
-
+            TaskService.PrintAllTasks();
+            break;
+        }
+        switch (args[1].ToLower())
+        {
+            case "todo":
+                TaskService.PrintTaksByStatus(Status.todo);
                 break;
-            case nameof(Status.in_progress):
-
+            case "in-progress":
+                TaskService.PrintTaksByStatus(Status.in_progress);
                 break;
-            case nameof(Status.done):
-
+            case "done":
+                TaskService.PrintTaksByStatus(Status.done);
+                break;
+            default:
+                Console.WriteLine("Unknown status. Use: todo, in-progress, done");
                 break;
         }
-        break;
-
-    case "Exit":
-
         break;
     case "-help":
         TaskService.ShowCommands();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -81,8 +82,64 @@ namespace TaskTracker
             Console.WriteLine($"New task with Id {newTask.Id} added successfully");
         }
 
+        public static void DeleteTask(int id)
+        {
+            var tasks = GetAllTasks();
 
+            tasks.RemoveAll(t => t.Id == id);
 
-       
+            SaveTasks(tasks);
+            Console.WriteLine($"Task with Id {id} deleted successfully");
+        }
+
+        public static void UpdateTask(int id, string newDescription)
+        {
+            var tasks = GetAllTasks();
+            var task = tasks.FirstOrDefault(t => t.Id == id);
+            if (task == null)
+            {
+                Console.WriteLine("Task not found");
+                return;
+            }
+            task.Description = newDescription;
+            task.UpdatedAt = DateTime.Now;
+
+            SaveTasks(tasks);
+            Console.WriteLine($"Task with Id {id} updated successfully");
+        }
+
+        public static void UpdateTask(int id, Status newStatus)
+        {
+            var tasks = GetAllTasks();
+            var task = tasks.FirstOrDefault(t => t.Id == id);
+            if (task == null)
+            {
+                Console.WriteLine("Task not found");
+                return;
+            }
+            task.Status = newStatus;
+            task.UpdatedAt = DateTime.Now;
+
+            SaveTasks(tasks);
+            Console.WriteLine($"Task with Id {id} updated successfully");
+        }
+
+        public static void PrintAllTasks()
+        {
+            foreach (var item in GetAllTasks())
+            {
+                Console.WriteLine(JsonSerializer.Serialize(item, JsonOptions));
+            }
+        }
+
+        public static void PrintTaksByStatus(Status status)
+        {
+            var tasks = GetAllTasks();
+
+            foreach (var item in tasks.FindAll(t => t.Status == status))
+            {
+                Console.WriteLine(JsonSerializer.Serialize(item, JsonOptions));
+            }
+        }
     }
 }

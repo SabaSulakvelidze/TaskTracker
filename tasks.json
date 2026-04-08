@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "Description": "Buy car",
+    "Status": "in_progress",
+    "CreatedAt": "2026-04-08T14:47:42.9272683+04:00",
+    "UpdatedAt": "2026-04-08T15:20:12.2915753+04:00"
+  },
+  {
+    "Id": 3,
+    "Description": "Buy grosery",
+    "Status": "todo",
+    "CreatedAt": "2026-04-08T15:04:03.1313065+04:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]
